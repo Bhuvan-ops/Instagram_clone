@@ -1,7 +1,7 @@
 // share_controller.js
 
-const Share = require("../Models/share");
-const Post = require("../Models/post");
+const Share = require("../model/share_model.js");
+const Post = require("../model/post_model.js");
 const { MESSAGES, STATUS_CODES } = require("../constants.js");
 
 const sharePost = async (req, res) => {

@@ -11,6 +11,7 @@ const MESSAGES = {
   USER_EXISTS: "User with these details already exists.",
   USER_CREATED: "User with username ({username}) created successfully",
   ERROR_CREATING_USER: "Error creating user",
+  UNAUTHORIZED_ACCESS: "Unauthorized access",
 };
 
 const PORTS = {
@@ -21,6 +22,7 @@ const STATUS_CODES = {
   SUCCESS: 200,
   CREATED: 201,
   BAD_REQUEST: 400,
+  UNAUTHORIZED: 401,
   NOT_FOUND: 404,
   INTERNAL_SERVER_ERROR: 500,
 };
@@ -36,4 +38,4 @@ const URLS = {
   MONGODB_URL: "mongodb://localhost:27017/Instagram_clone_db",
 };
 
-module.exports = { STATUS_CODES, API_URLS, MESSAGES, PORTS };
+module.exports = { STATUS_CODES, API_URLS, MESSAGES, PORTS, URLS };

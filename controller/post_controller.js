@@ -1,6 +1,6 @@
 // post_controller.js
 
-const Post = require("../Models/post");
+const Post = require("../model/post_model");
 const { MESSAGES, STATUS_CODES } = require("../constants");
 
 const getAllPosts = async (req, res) => {

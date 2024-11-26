@@ -30,11 +30,7 @@ const signupUser = async (req, res) => {
       username: username,
       phonenumber: phonenumber,
       password: hashedPassword,
-      userId: undefined,
     });
-
-    createdUser.userId = createdUser._id;
-    await createdUser.save();
 
     res.status(STATUS_CODES.CREATED).json({
       message: `User with username ${createdUser.username} created successfully`,

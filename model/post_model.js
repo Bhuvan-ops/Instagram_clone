@@ -12,5 +12,4 @@ const postSchema = new mongoose.Schema({
   likes: [{ username: String, email: String }],
 });
 
-const Post = mongoose.model("Post", postSchema);
-module.exports = Post;
+module.exports = mongoose.model("Post", postSchema);

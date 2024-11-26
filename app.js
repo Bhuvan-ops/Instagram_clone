@@ -7,7 +7,8 @@ const likeRoutes = require("./routers/like_router.js");
 const shareRoutes = require("./routers/share_router.js");
 const loginRoute = require("./routers/login_router.js");
 const signupRoute = require("./routers/signup_router.js");
-const { PORTS } = require("./constants.js");
+const { PORTS, URLS } = require("./constants.js");
+const PORT = PORTS.SERVER || 5000;
 
 const app = express();
 
@@ -26,7 +27,10 @@ app.use("/", likeRoutes);
 app.use("/", shareRoutes);
 
 mongoose
-  .connect(process.env.MONGO_URL)
+  .connect(URLS.MONGODB_URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
   .then(() => {
     console.log("Connected to MongoDB");
   })
@@ -34,8 +38,6 @@ mongoose
     console.error("Error connecting to MongoDB", err);
   });
 
-const port = process.env.PORT || PORTS.SERVER || 5000;
-
-app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });

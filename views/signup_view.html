@@ -140,20 +140,20 @@
 
             const data = await response.json();
             responseMessage.textContent = data.message;
+            setTimeout(() => {
+              window.location.href = "login_view.html";
+            }, 1500);
           } catch (error) {
             console.error("Error:", error);
             responseMessage.textContent =
               "An error occurred. Please try again.";
           }
-          setTimeout(() => {
-            window.location.href = "login.html";
-          }, 1500);
         });
 
       document
         .getElementById("back-button")
         .addEventListener("click", function () {
-          window.location.href = "login.html";
+          window.location.href = "login_view.html";
         });
     </script>
   </body>

@@ -2,7 +2,7 @@
 
 const express = require("express");
 const router = express.Router();
-const { sharePost } = require("../Controller/Sharecontroller");
+const { sharePost } = require("../controller/share_controller");
 
 router.post("/:postId/share", sharePost);
 
