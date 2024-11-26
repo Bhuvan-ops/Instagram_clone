@@ -2,15 +2,6 @@
 
 const mongoose = require("mongoose");
 
-mongoose
-  .connect(`mongodb://127.0.0.1:27017/instagram-clone`)
-  .then(() => {
-    console.log("Database connection successful");
-  })
-  .catch((error) => {
-    console.error("Database connection error:", error);
-  });
-
 const userSchema = mongoose.Schema({
   email: { type: String, required: [true, "Email is required"], unique: true },
   username: {

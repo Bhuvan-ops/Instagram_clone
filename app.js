@@ -32,10 +32,10 @@ mongoose
     useUnifiedTopology: true,
   })
   .then(() => {
-    console.log("Connected to MongoDB");
+    console.log("Connected to Database");
   })
-  .catch((err) => {
-    console.error("Error connecting to MongoDB", err);
+  .catch((error) => {
+    console.error("Error connecting to Database", error);
   });
 
 app.listen(PORT, () => {
