@@ -3,12 +3,12 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const cors = require("cors");
 
-const postRoutes = require("./Routers/post");
-const likeRoutes = require("./Routers/like");
-const shareRoutes = require("./Routers/share");
-const loginRoute = require("./Instagram_auth/Controller/logincontroller.js");
-const signupRoute = require("./Instagram_auth/Controller/signupcontroller");
-const { PORTS } = require("./Instagram_auth/constants");
+const postRoutes = require("./routers/post_router.js");
+const likeRoutes = require("./routers/like_router.js");
+const shareRoutes = require("./routers/share_router.js");
+const loginRoute = require("./routers/login_router.js");
+const signupRoute = require("./routers/signup_router.js");
+const { PORTS } = require("./constants.js");
 
 dotenv.config();
 
