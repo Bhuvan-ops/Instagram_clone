@@ -1,6 +1,5 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const dotenv = require("dotenv");
 const cors = require("cors");
 
 const postRoutes = require("./routers/post_router.js");
@@ -9,8 +8,6 @@ const shareRoutes = require("./routers/share_router.js");
 const loginRoute = require("./routers/login_router.js");
 const signupRoute = require("./routers/signup_router.js");
 const { PORTS } = require("./constants.js");
-
-dotenv.config();
 
 const app = express();
 
@@ -22,9 +19,8 @@ const corsOpts = {
 app.use(cors(corsOpts));
 app.use(express.json());
 
-app.use(loginRoute);
-app.use(signupRoute);
-
+app.use("/", loginRoute);
+app.use("/", signupRoute);
 app.use("/", postRoutes);
 app.use("/", likeRoutes);
 app.use("/", shareRoutes);

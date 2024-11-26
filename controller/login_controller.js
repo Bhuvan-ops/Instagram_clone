@@ -1,15 +1,10 @@
 // login_controller.js
 
-const express = require("express");
 const bcrypt = require("bcrypt");
-const router = express.Router();
+const userModel = require("../model/user_model");
+const { STATUS_CODES, MESSAGES } = require("../constants.js");
 
-const userModel = require("../Models/user.js");
-const { STATUS_CODES, API_URLS, MESSAGES } = require("../constants");
-
-router.use(express.json());
-
-router.post(API_URLS.LOGIN, async (req, res) => {
+const loginUser = async (req, res) => {
   const { username, password, email, phonenumber } = req.body;
 
   if ((!username && !email && !phonenumber) || !password) {
@@ -40,10 +35,6 @@ router.post(API_URLS.LOGIN, async (req, res) => {
     if (isMatch) {
       return res.status(STATUS_CODES.SUCCESS).json({
         message: MESSAGES.LOGIN_SUCCESS,
-        user: {
-          _id: loginUser._id,
-          profileUrl: `${API_URLS.BASE_URL}/user/${loginUser._id}`,
-        },
       });
     } else {
       return res
@@ -56,6 +47,6 @@ router.post(API_URLS.LOGIN, async (req, res) => {
       .status(STATUS_CODES.INTERNAL_SERVER_ERROR)
       .json({ message: MESSAGES.INTERNAL_SERVER_ERROR, error: error.message });
   }
-});
+};
 
-module.exports = router;
+module.exports = { loginUser };

@@ -26,10 +26,14 @@ const STATUS_CODES = {
 };
 
 const API_URLS = {
-  BASE_URL: "http://localhost:5000",
   LOGIN: "/login",
   SIGNUP: "/signup",
   GUEST: "/guest",
+};
+
+const URLS = {
+  BASE_URL: "http://localhost:5000",
+  MONGODB_URL: "mongodb://localhost:27017/Instagram_clone_db",
 };
 
 module.exports = { STATUS_CODES, API_URLS, MESSAGES, PORTS };

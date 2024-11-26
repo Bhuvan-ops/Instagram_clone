@@ -1,15 +1,10 @@
 // signup_controller.js
 
-const express = require("express");
 const bcrypt = require("bcrypt");
-const router = express.Router();
+const userModel = require("../model/user_model");
+const { STATUS_CODES, MESSAGES } = require("../constants");
 
-const userModel = require("../Models/user.js");
-const { STATUS_CODES, API_URLS, MESSAGES } = require("../constants");
-
-router.use(express.json());
-
-router.post(API_URLS.SIGNUP, async (req, res) => {
+const signupUser = async (req, res) => {
   const { email, username, password, phonenumber } = req.body;
 
   try {
@@ -30,25 +25,26 @@ router.post(API_URLS.SIGNUP, async (req, res) => {
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
-    let createdUser = await userModel.create({
+    const createdUser = await userModel.create({
       email: email,
       username: username,
       phonenumber: phonenumber,
       password: hashedPassword,
-      _id: userID,
+      userId: undefined,
     });
 
+    createdUser.userId = createdUser._id;
+    await createdUser.save();
+
     res.status(STATUS_CODES.CREATED).json({
-      message: MESSAGES.USER_CREATED.replace(
-        "{username}",
-        createdUser.username
-      ),
+      message: `User with username ${createdUser.username} created successfully`,
     });
   } catch (error) {
+    console.error("Error during signup:", error);
     res
       .status(STATUS_CODES.INTERNAL_SERVER_ERROR)
       .json({ message: MESSAGES.ERROR_CREATING_USER, error: error.message });
   }
-});
+};
 
-module.exports = router;
+module.exports = { signupUser };

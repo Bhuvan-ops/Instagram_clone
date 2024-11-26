@@ -1,6 +1,6 @@
 // login_controller.js
 
-const Post = require("../Models/post");
+const Post = require("../model/post_model.js");
 const { MESSAGES, STATUS_CODES } = require("../constants.js");
 
 const likePost = async (req, res) => {
