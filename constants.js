@@ -1,3 +1,5 @@
+// constants.js
+
 const MESSAGES = {
   FETCH_ERROR: "Error fetching the posts",
   CREATE_ERROR: "Error creating post",

@@ -5,15 +5,16 @@ const { STATUS_CODES, MESSAGES } = require("../constants");
 
 const authMiddleware = async (req, res, next) => {
   try {
-    const { _id } = req.params;
+    const { username } = req.params;
 
-    if (!_id) {
+    if (!username) {
       return res
         .status(STATUS_CODES.BAD_REQUEST)
         .json({ message: MESSAGES.MISSING_FIELDS });
     }
 
-    const user = await User.findById({ _id });
+    const user = await User.findOne({ username });
+    console.log(user);
 
     if (!user) {
       return res

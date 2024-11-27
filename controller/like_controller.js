@@ -4,8 +4,8 @@ const Post = require("../model/post_model.js");
 const { MESSAGES, STATUS_CODES } = require("../constants.js");
 
 const likePost = async (req, res) => {
-  const { userId, postId } = req.params;
-  if (req.user.id !== userId) {
+  let { postId } = req.params;
+  if (!postId) {
     return res
       .status(STATUS_CODES.FORBIDDEN)
       .json({ message: MESSAGES.UNAUTHORIZED });
